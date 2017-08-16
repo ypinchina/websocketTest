@@ -1,1 +1,2 @@
 # websocketTest
+用来学习websocket相关API以及为俄罗斯方块对战H5游戏打基础
