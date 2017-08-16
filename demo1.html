@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>demo1</title>
+</head>
+<body>
+ <input type="text" id='sendTo' />
+  <button id='ok'>提交</button>
+ <div id="resc"></div>
+
+ <script>
+ if(new WebSocket("ws://echo.websocket.org/")){
+ 	var websocket = new WebSocket("ws://echo.websocket.org/")
+ 	var resc = document.getElementById("resc")
+ 	websocket.onopen = function(){
+ 		console.log("Connected")
+ 		resc.innerHTML = 'Connected'
+ 	}
+ 	websocket.onclose =function(){
+ 		console.log("closed")
+ 		resc.innerHTML = 'closed'
+ 	}
+ 	websocket.onmessage = function(e){
+ 		console.log(e.data)
+ 		resc.innerHTML = e.data
+ 	}
+ 	var ok = document.getElementById("ok")
+ 	
+ 	ok.onclick = function(){
+ 		var sendTo = document.getElementById("sendTo")
+ 		websocket.send(sendTo.value)
+ 	}
+
+ }else{
+ 	alert("抱歉，你的浏览器不支持websocket");
+ }
+ 	
+ </script>
+</body>
+</html>
